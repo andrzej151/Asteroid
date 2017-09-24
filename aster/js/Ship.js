@@ -1,6 +1,6 @@
 function Ship(){
-    this.r = 0.04;
-    this.rear_a = 50;
+    this.r = 0.03;
+    this.rear_a = 30;
     this.a = 0;
     //
     this.x = VAR.W/2;
@@ -10,9 +10,15 @@ function Ship(){
 }
 
 Ship.prototype.draw = function(){
+    if(Game.key_37 || Game.key_39){
+        this.a = this.a + 7*(Game.key_37 ? -1 : 1);
+    }
+    
     Game.ctx.beginPath();
     for(var i=0;i<3;i++){
         this.tmp_a = i===0 ? this.a : (this.a+180+(i==1 ? this.rear_a : -this.rear_a));
+        this.tmp_r = i===0 ? this.r : this.r*0.6;
+        
         this.points[i].x = Math.sin(Math.PI/180*this.tmp_a)*this.r*VAR.d+this.x;
         this.points[i].y = -Math.cos(Math.PI/180*this.tmp_a)*this.r*VAR.d+this.y;
         
