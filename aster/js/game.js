@@ -9,8 +9,8 @@ VAR = {
     lastTime:0,
     lastUpdate:-1,
     rand:function(min,max){
-        return Math.floor(Math.random()+(max-min+1))+min;
-    }  
+		return Math.floor(Math.random()*(max-min+1))+min;
+    }
 };
 
 Game = {
@@ -22,6 +22,9 @@ Game = {
         window.addEventListener('resize', Game.layout, false);
         
         document.body.appendChild(Game.canvas);
+        for(var i=0; i<4; i++){
+            new Rock(1);
+        }
         Game.ship = new Ship();
         
         window.addEventListener('keydown', Game.onKey, false);
@@ -69,6 +72,7 @@ Game = {
             VAR.lastTime =time;
             //console.log("loop");
             Game.ctx.clearRect(0,0,VAR.W,VAR.H);
+            Rock.draw();
             Game.ship.draw();
             Bullet.draw();
         }
