@@ -39,6 +39,7 @@ function Rock(size,x,y){//size może się równać 0, 1 lub 2 (dwa to największ
 	}
 }
 Rock.prototype.remove = function(){
+    Sound.play('bum'+VAR.rand(1,2));
     if(this.size>0){
         for(var i=0, j=VAR.rand(2,4); i<j; i++ ){
                 new Rock(this.size-1, this.x, this.y);
@@ -68,7 +69,6 @@ Rock.prototype.hitTest = function(x,y){
 };
 // Rysowanie pojedynczego kamienia
 Rock.prototype.draw = function() {
-	
 	this.x+=this.modX*VAR.d;
 	this.y+=this.modY*VAR.d;
     if(this.x+this.r*VAR.d<0){
@@ -98,4 +98,9 @@ Rock.draw = function(){
 		Rock.num ++;
 		Rock.all[r].draw();
 	}
+     if(Rock.num===0 && !Game.success )
+        {
+            Game.success =true;
+            Sound.play('win');
+        }
 };

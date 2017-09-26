@@ -11,6 +11,7 @@ Bullet.live = 35;
 
 function Bullet(){
     if(Bullet.active_count<Bullet.max){
+        Sound.play('laser');
         Bullet.count++;
         Bullet.active_count++;
         

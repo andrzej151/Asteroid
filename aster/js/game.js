@@ -15,17 +15,19 @@ VAR = {
 
 Game = {
     init:function(){
+        Sound.init();
         Game.canvas = document.createElement('canvas');
         Game.ctx= Game.canvas.getContext('2d');
         Game.hit_canvas = document.createElement('canvas');
         Game.hit_ctx= Game.hit_canvas.getContext('2d');
         Game.layout();
+        Game.success = false;
         
         window.addEventListener('resize', Game.layout, false);
         
         document.body.appendChild(Game.canvas);
         
-        for(var i=0; i<5; i++){
+        for(var i=0; i<2; i++){
             new Rock(2);
         }
         Game.ship = new Ship();
