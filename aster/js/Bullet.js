@@ -30,9 +30,16 @@ function Bullet(){
 
 Bullet.draw = function(){
     for(var b in Bullet.all){
+         for(var r in Rock.all){
+                if(Rock.all[r].hitTest(Bullet.all[b].x, Bullet.all[b].y)){
+                    Bullet.all[b].live += Bullet.live;
+                    Rock.all[r].remove();
+                    break;
+                }
+            };
         if(Bullet.all[b].live<Bullet.live){
+                
             Bullet.all[b].live++;
-            
             if(Bullet.all[b].x<0){
                 Bullet.all[b].x+=VAR.W;
             }else if (Bullet.all[b].x>VAR.W){
