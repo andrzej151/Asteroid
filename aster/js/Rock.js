@@ -45,6 +45,7 @@ Rock.prototype.remove = function(){
             }
     }
     delete Rock.all[this.id];
+    Dot.add(this.x, this.y);
 }
 Rock.prototype.hitTest = function(x,y){
     if(x>this.x-this.r*VAR.d && x<this.x+this.r*VAR.d && y>this.y-this.r*VAR.d && y<this.y+this.r*VAR.d)
